@@ -24,4 +24,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('register', [ 'uses' => 'AuthController@register' ]);
     $router->post('login', [ 'uses' => 'AuthController@login' ]);
     $router->post('logout', [ 'uses' => 'AuthController@logout' ]);
+
+    $router->get('parking', [ 'uses' => 'ParkingController@getAll' ]);
 });
