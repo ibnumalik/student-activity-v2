@@ -108,6 +108,29 @@ class AuthController extends Controller
         return $this->validate($request, $rules, $messages);
     }
 
+    public function logout(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required'
+        ], [ 'token.required' => 'Missing token' ]);
+
+        $userToken = User::where('token', $request->input('token'))->first();
+
+        if ( !$userToken ) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Token does not exist',
+            ]);
+        }
+
+        $userToken->update(['token' => 'LOGGED OUT']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully logged out',
+        ]);
+    }
+
     /**
      * Return error message on wrong email or password
      *
