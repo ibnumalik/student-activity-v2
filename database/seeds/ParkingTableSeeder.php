@@ -15,11 +15,11 @@ class ParkingTableSeeder extends Seeder
 
         foreach ($blockName as $block) {
             for ($i = 1; $i <= 10; $i++) {
-                DB::table('parking')->insert([
+                DB::table('parkings')->insert([
                     'block_name' => $block,
                     'space_number' => $i,
                     'rented' => false
-                    ]);
+                ]);
             }
         }
     }
