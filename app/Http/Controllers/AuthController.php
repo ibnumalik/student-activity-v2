@@ -54,6 +54,60 @@ class AuthController extends Controller
         return $this->validate($request, $rules, $messages);
     }
 
+    public function register(Request $request)
+    {
+        $this->validateRegistration($request);
+
+        $emailExist = User::where('email', $request->input('email'))->first();
+
+        /**
+         * Check if email already exist in database
+         */
+        if ($emailExist) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'The email has already been used',
+            ]);
+        }
+
+        /**
+         * Check if password length is acceptable
+         */
+        if (strlen($request->input('password')) <= 6) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'The password length must be more than or 6 characters',
+            ]);
+        }
+
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => app('hash')->make($request->input('password')),
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully registered'
+        ]);
+    }
+
+    private function validateRegistration($request)
+    {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ];
+        $messages = [
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'password.required' => 'Password is required'
+        ];
+
+        return $this->validate($request, $rules, $messages);
+    }
+
     /**
      * Return error message on wrong email or password
      *

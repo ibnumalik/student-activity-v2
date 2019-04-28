@@ -21,5 +21,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     });
 
     // Auth routes
+    $router->post('register', [ 'uses' => 'AuthController@register' ]);
     $router->post('login', [ 'uses' => 'AuthController@login' ]);
 });
