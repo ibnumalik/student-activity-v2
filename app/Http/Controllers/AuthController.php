@@ -31,7 +31,7 @@ class AuthController extends Controller
             return $this->authenticationMismatch();
         }
 
-        $apiKey = base64_encode(str_random(40));
+        $apiKey = encrypt($user->email.'|'.str_random(40));
         $user->update(['token' => $apiKey]);
 
         return response()->json([
