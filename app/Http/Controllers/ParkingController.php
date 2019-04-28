@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Parking;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ParkingController extends Controller
 {
@@ -22,6 +23,25 @@ class ParkingController extends Controller
             'status' => 'success',
             'data' => [
                 'parking' => Parking::all()
+            ]
+        ]);
+    }
+
+    public function get($id)
+    {
+        try {
+            $parking = Parking::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Parking space not found'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'parking' => $parking
             ]
         ]);
     }
