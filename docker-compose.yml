@@ -21,6 +21,7 @@ services:
             - "traefik.enable=false"
         volumes:
             - .:/var/www/school
+        working_dir: /var/www/school
         networks:
             - internal
     composer:
