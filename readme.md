@@ -23,3 +23,4 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Todo
 - [ ] User management
+- [ ] Better database design for users table
