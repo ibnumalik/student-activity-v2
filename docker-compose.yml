@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+    web:
+        image: nginx:latest
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=student_activity_v2_web"
+            - "traefik.frontend.rule=Host:${APP_DOMAIN}"
+            - "traefik.docker.network=web"
+            - "traefik.port=${NGINX_PORT}"
+        volumes:
+            - .:/var/www/school:ro
+            - ./server/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - web
+            - internal
+    php:
+        image: php:7-fpm
+        labels:
+            - "traefik.enable=false"
+        volumes:
+            - .:/var/www/school
+        networks:
+            - internal
+    composer:
+        image: composer/composer:php7
+        labels:
+            - "traefik.enable=false"
+        command: install --ignore-platform-reqs
+        volumes:
+            - .:/app
+        networks:
+            - internal
+
+networks:
+    web:
+        external: true
+    internal:
+        external: false
