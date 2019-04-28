@@ -19,4 +19,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('secret', function () {
         return str_random(32);
     });
+
+    // Auth routes
+    $router->post('login', [ 'uses' => 'AuthController@login' ]);
 });
