@@ -37,7 +37,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully authenticated'
-        ], 200);
+        ]);
     }
 
     private function validateLogin($request)
@@ -118,6 +118,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'fail',
             'message' => 'Incorrect email or password.'
-        ], 401);
+        ]);
     }
 }
