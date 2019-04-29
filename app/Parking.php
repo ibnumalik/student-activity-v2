@@ -15,4 +15,9 @@ class Parking extends Model
     protected $fillable = [
         'block_name', 'space_name', 'rented'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
