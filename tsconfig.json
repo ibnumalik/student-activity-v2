@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
       "target": "es6",
-      "module": "es6",
+      "module": "commonjs",
       "moduleResolution": "node",
       "declaration": false,
-      "noImplicitAny": false,
+      "noImplicitAny": true,
       "jsx": "react",
       "sourceMap": true,
       "noLib": false,

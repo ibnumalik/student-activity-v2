@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/ibnumalik/Student-Activity#readme",
   "dependencies": {
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
