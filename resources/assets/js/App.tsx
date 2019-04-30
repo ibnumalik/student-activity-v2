@@ -3,11 +3,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import HelloComponent from './hello';
+import HomeComponent from './Home';
 
 import "../sass/app.scss";
 
 ReactDOM.render(
-  <HelloComponent/>,
+  <HomeComponent/>,
   document.getElementById('root')
 );

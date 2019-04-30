@@ -18,7 +18,7 @@ const styles = createStyles({
 
 export interface Props extends WithStyles<typeof styles> {}
 
-function HelloComponent (props: Props) {
+const HomeComponent = (props: Props) => {
   const { classes } = props;
   return (
     <React.Fragment>
@@ -35,8 +35,8 @@ function HelloComponent (props: Props) {
   );
 };
 
-HelloComponent.prototype = {
+HomeComponent.prototype = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(HelloComponent);
+export default withStyles(styles)(HomeComponent);
