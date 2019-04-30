@@ -5,3 +5,6 @@ Homestead.yaml
 .env
 
 /node_modules
+public/css
+public/js
+database/database.sqlite
