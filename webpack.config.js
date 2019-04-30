@@ -12,5 +12,15 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'public/js'),
         filename: 'app.js'
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                loader: 'ts-loader',
+            }
+        ]
     }
 }
