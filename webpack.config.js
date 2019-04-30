@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
             extensions: [ '.js', '.ts', '.tsx' ]
         },
 
-        entry: './App.tsx',
+        entry: './index.tsx',
 
         output: {
             path: path.join(__dirname, 'public'),
