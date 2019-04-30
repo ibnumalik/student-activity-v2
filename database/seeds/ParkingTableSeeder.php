@@ -18,7 +18,7 @@ class ParkingTableSeeder extends Seeder
                 DB::table('parkings')->insert([
                     'block_name' => $block,
                     'space_number' => $i,
-                    'rented' => false
+                    'created_at' => date("Y-m-d H:i:s"),
                 ]);
             }
         }

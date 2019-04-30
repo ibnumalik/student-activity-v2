@@ -15,9 +15,9 @@ class CreateParkingsTable extends Migration
     {
         Schema::create('parkings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->nullable();
             $table->string('block_name');
             $table->integer('space_number');
-            $table->boolean('rented');
             $table->timestamps();
         });
     }
