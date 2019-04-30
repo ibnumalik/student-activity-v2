@@ -91,12 +91,6 @@ module.exports = (env, argv) => {
 
         resolve: {
             extensions: ['.tsx', '.ts', '.js']
-        },
-
-        devServer: {
-            contentBase: path.join(__dirname, "public"),
-            compress: true,
-            port: 8008
         }
     }
 };
