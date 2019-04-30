@@ -19,6 +19,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('secret', function () {
         return str_random(32);
     });
+    $router->get('date', function () {
+        return date("Y-m-d H:i:s");
+    });
 
     // Auth routes
     $router->post('register', [ 'uses' => 'AuthController@register' ]);
@@ -26,5 +29,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('logout', [ 'uses' => 'AuthController@logout' ]);
 
     $router->get('parking', [ 'uses' => 'ParkingController@getAll' ]);
+    $router->post('parking/rent', [ 'uses' => 'ParkingController@rent' ]);
     $router->get('parking/{id}', [ 'uses' => 'ParkingController@get' ]);
 });

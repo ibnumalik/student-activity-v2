@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Parking;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
+use App\User;
 
 class ParkingController extends Controller
 {
@@ -44,5 +46,63 @@ class ParkingController extends Controller
                 'parking' => $parking
             ]
         ]);
+    }
+
+    public function rent(Request $request)
+    {
+        $this->validateRent($request);
+
+        try {
+            $parking = Parking::findOrFail($request->input('parking_id'));
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Parking space not found'
+            ]);
+        }
+
+        if( $parking->user_id ) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'The parking space has been rented'
+            ]);
+        }
+
+        try {
+            $user = User::where('token', $request->input('token'))->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'User does not exist'
+            ]);
+        }
+
+        $user->parkings()->save($parking);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'receipt' => $this->generateReceipt()
+            ]
+        ]);
+    }
+
+    private function validateRent($request)
+    {
+        $rules = [
+            'token' => 'required',
+            'parking_id' => 'required',
+        ];
+        $messages = [
+            'token.required' => 'Missing user token',
+            'parking_id.required' => 'Missing parking id',
+        ];
+
+        return $this->validate($request, $rules, $messages);
+    }
+
+    public function generateReceipt()
+    {
+        return str_random(32);
     }
 }
