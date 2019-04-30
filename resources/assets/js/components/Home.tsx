@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { createStyles, WithStyles, withStyles } from "@material-ui/core";
 import * as PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const styles = createStyles({
   root: {
@@ -26,7 +27,11 @@ const HomeComponent = (props: Props) => {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Student Portal
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">
+            <Link to="login">
+            Login
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </React.Fragment>
