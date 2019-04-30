@@ -23,16 +23,14 @@ function HelloComponent (props: Props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              Student Portal
-            </Typography>
-          </Toolbar>
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            Student Portal
+          </Typography>
           <Button color="inherit">Login</Button>
-        </AppBar>
-      </div>
+        </Toolbar>
+      </AppBar>
     </React.Fragment>
   );
 };
