@@ -15,7 +15,8 @@ class UsersTableSeeder extends Seeder
             'name' => config('app.admin.name'),
             'email' => config('app.admin.email'),
             'password' => app('hash')->make(config('app.admin.password')),
-            'role' => 'admin'
+            'role' => 'admin',
+            'created_at' => date("Y-m-d H:i:s"),
         ]);
     }
 }
