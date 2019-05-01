@@ -56,7 +56,9 @@ Alright, here we go. Let's install our app and get started!
 
     2.2. Duplicate `.env.example` file to `.env` file.
 
-    2.3. Start docker in background.
+    2.3. Duplicate `resources/assets/js/env.example.ts` file to `resources/assets/js/env.ts` file.
+
+    2.4. Start docker in background.
     ```
     docker-compose up -d
     ```
