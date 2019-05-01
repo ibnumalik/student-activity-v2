@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core';
+import axios from "axios";
+import env from "../env";
 
 const styles = (theme: Theme) => createStyles({
   main: {
@@ -56,6 +58,7 @@ class Login extends React.Component<LoginProps> {
     email: '',
     password: ''
   }
+  private loginUrl = env.baseApi + '/login';
 
   private handleEmailAddressChange = (event: any) => {
     this.setState({ email: event.target.value });
@@ -67,6 +70,15 @@ class Login extends React.Component<LoginProps> {
 
   private handleLogin = (event: any) => {
     event.preventDefault();
+
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    axios.post(this.loginUrl, data)
+      .then(response => console.log(response));
+
   }
 
   public render(): JSX.Element {
