@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = (env, argv) => {
 
@@ -14,12 +15,22 @@ module.exports = (env, argv) => {
 
         output: {
             path: path.join(__dirname, 'public'),
-            filename: 'js/app.js'
+            filename: 'js/app.js',
+            pathinfo: false
+        },
+
+        optimization: {
+            removeAvailableModules: false,
+            removeEmptyChunks: false,
+            splitChunks: false
         },
 
         plugins: [
             new MiniCssExtractPlugin({
                 filename: 'css/app.css',
+            }),
+            new ForkTsCheckerWebpackPlugin({
+                tsconfig: path.join(__dirname)
             })
         ],
 
@@ -28,7 +39,11 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(ts|tsx)$/,
                     exclude: /node_modules/,
-                    loader: 'awesome-typescript-loader',
+                    loader: 'ts-loader',
+                    options: {
+                        transpileOnly: true,
+                        experimentalWatchApi: true
+                    }
                 },
 
                 {
