@@ -1,29 +1,34 @@
 import * as React from 'react';
-import {
-    WithStyles,
-    createStyles,
-    Theme,
-    FormHelperText
-} from '@material-ui/core';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import env from '../../env';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import axios from 'axios';
-import env from '../../env';
 import withStyles from '@material-ui/core/styles/withStyles';
-import FormValidator from '../../forms/validator';
+import { createStyles, Theme, WithStyles } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
+import { loginFormValidator, validateLoginForm } from './login-validation';
 
-type FormDataState = { email: string; password: string };
+type InputFieldValidation = {
+    isInvalid: boolean;
+    message: String;
+};
+type LoginFormValidation = {
+    isValid: boolean;
+    email?: InputFieldValidation;
+    password?: InputFieldValidation;
+};
 type LoginFormResponse = { status: string; message: string };
-type State = {
-    formData: FormDataState;
+type LoginFormState = {
+    formData: { email: string; password: string };
     validation: LoginFormValidation;
     formResponse: LoginFormResponse;
 };
+type LoginFormProps = WithStyles<typeof styles> & {};
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -35,65 +40,37 @@ const styles = (theme: Theme) =>
         }
     });
 
-interface LoginFormProps extends WithStyles<typeof styles> {}
-
-interface InputFieldValidation {
-    isInvalid: boolean;
-    message: String;
-}
-interface LoginFormValidation {
-    isValid: boolean;
-    email?: InputFieldValidation;
-    password?: InputFieldValidation;
-}
-
-class LoginForm extends React.Component<LoginFormProps, any> {
-    validator = new FormValidator([
-        {
-            field: 'email',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Email is required'
-        },
-        {
-            field: 'password',
-            method: 'isEmpty',
-            validWhen: false,
-            message: 'Password is required'
-        }
-    ]);
-    state: State = {
+class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
+    state: LoginFormState = {
         formData: {
             email: '',
             password: ''
         },
-        validation: this.validator.valid(),
+        validation: loginFormValidator,
         formResponse: {
             status: '',
             message: ''
         }
     };
-    private loginUrl = env.baseApi + '/login';
+    _loginUrl = env.baseApi + '/login';
 
-    private handleChange = (event: any) => {
+    _handleChange = (event: any) => {
         const { formData } = this.state;
         formData[event.target.name] = event.target.value;
         this.setState({ formData });
     };
 
-    private handleLogin = (event: any) => {
+    _handleLogin = (event: any) => {
         event.preventDefault();
 
         const { formData } = this.state;
-        const validation: LoginFormValidation = this.validator.validate(
-            formData
-        );
+        const validation: LoginFormValidation = validateLoginForm(formData);
 
         this.setState({ validation });
 
         if (validation.isValid) {
             axios
-                .post(this.loginUrl, formData)
+                .post(this._loginUrl, formData)
                 .then(response => {
                     const { data: formResponse } = response;
                     this.setState({ formResponse });
@@ -130,7 +107,7 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                 >
                     <InputLabel htmlFor='email'>Email Address</InputLabel>
                     <Input
-                        onChange={this.handleChange}
+                        onChange={this._handleChange}
                         id='email'
                         name='email'
                         autoComplete='email'
@@ -148,7 +125,7 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                 >
                     <InputLabel htmlFor='password'>Password</InputLabel>
                     <Input
-                        onChange={this.handleChange}
+                        onChange={this._handleChange}
                         name='password'
                         type='password'
                         id='password'
@@ -163,7 +140,7 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                     label='Remember me'
                 />
                 <Button
-                    onClick={this.handleLogin}
+                    onClick={this._handleLogin}
                     type='submit'
                     fullWidth
                     variant='contained'
