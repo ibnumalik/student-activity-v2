@@ -3,6 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Route, HashRouter } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./auth/login/login";
+import Register from "./auth/register/register";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <HashRouter>
         <Route path="/" component={Home}></Route>
         <Route path="/login" component={Login}></Route>
+        <Route path="/register" component={Register}></Route>
       </HashRouter>
 
     </React.Fragment>
