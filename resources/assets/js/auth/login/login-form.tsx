@@ -12,9 +12,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import axios from 'axios';
-import env from '../env';
+import env from '../../env';
 import withStyles from '@material-ui/core/styles/withStyles';
-import FormValidator from '../forms/validator';
+import FormValidator from '../../forms/validator';
 import { Redirect } from 'react-router-dom';
 
 type FormDataState = { email: string; password: string };

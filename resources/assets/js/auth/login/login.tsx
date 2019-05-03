@@ -5,7 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core';
 
-import LoginForm from './LoginForm';
+import LoginForm from './login-form';
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -43,7 +43,6 @@ const styles = (theme: Theme) =>
 interface LoginProps extends WithStyles<typeof styles> {}
 
 class Login extends React.Component<LoginProps> {
-
     public render(): JSX.Element {
         const classes = this.props.classes;
 
@@ -56,7 +55,7 @@ class Login extends React.Component<LoginProps> {
                         </Typography>
                     </div>
                     <div className={classes.loginBody}>
-                        <LoginForm></LoginForm>
+                        <LoginForm />
                     </div>
                 </Paper>
             </main>

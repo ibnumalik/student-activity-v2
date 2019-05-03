@@ -2,7 +2,7 @@ import * as React from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Route, HashRouter } from 'react-router-dom';
 import Home from "./components/Home";
-import Login from "./auth/Login";
+import Login from "./auth/login/login";
 
 const App = () => {
   return (
