@@ -41,6 +41,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.2",
     "@types/validator": "^10.11.0",
+    "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^2.1.1",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",

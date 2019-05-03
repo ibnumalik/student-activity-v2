@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.(ts|tsx)$/,
                     exclude: /node_modules/,
-                    loader: 'ts-loader',
+                    loader: 'awesome-typescript-loader',
                 },
 
                 {
