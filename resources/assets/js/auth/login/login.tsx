@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core';
-
+import { Link } from 'react-router-dom';
 import LoginForm from './login-form';
 
 const styles = (theme: Theme) =>
@@ -37,6 +37,9 @@ const styles = (theme: Theme) =>
         avatar: {
             margin: theme.spacing.unit,
             backgroundColor: theme.palette.secondary.main
+        },
+        register: {
+            marginTop: '24px'
         }
     });
 
@@ -58,6 +61,9 @@ class Login extends React.Component<LoginProps> {
                         <LoginForm />
                     </div>
                 </Paper>
+                <Typography className={classes.register} component='p'>
+                    Don't have an account? <Link to='/register'>Register</Link>
+                </Typography>
             </main>
         );
     }
