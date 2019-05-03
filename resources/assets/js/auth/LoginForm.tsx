@@ -15,6 +15,7 @@ import axios from 'axios';
 import env from '../env';
 import withStyles from '@material-ui/core/styles/withStyles';
 import FormValidator from '../forms/validator';
+import { Redirect } from 'react-router-dom';
 
 type FormDataState = { email: string; password: string };
 type LoginFormResponse = { status: string; message: string };
@@ -96,7 +97,6 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                 .then(response => {
                     const { data: formResponse } = response;
                     this.setState({ formResponse });
-                    console.log(formResponse);
                 })
                 .catch(error => {
                     const {
@@ -113,9 +113,15 @@ class LoginForm extends React.Component<LoginFormProps, any> {
     render() {
         const classes = this.props.classes;
 
+        if (this.state.formResponse.status === 'success') {
+            return <Redirect to='/' />;
+        }
+
         return (
             <form className={classes.form}>
-                <FormHelperText>{this.state.formResponse.message}</FormHelperText>
+                <FormHelperText>
+                    {this.state.formResponse.message}
+                </FormHelperText>
                 <FormControl
                     margin='normal'
                     required
