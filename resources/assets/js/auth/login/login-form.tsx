@@ -9,28 +9,12 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { createStyles, Theme, WithStyles } from '@material-ui/core';
+import { createStyles, Theme } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import { loginFormValidator, validateLoginForm } from './login-validation';
+import { LoginFormProps, LoginFormState, LoginFormValidation } from "./login.model";
 
-type InputFieldValidation = {
-    isInvalid: boolean;
-    message: String;
-};
-type LoginFormValidation = {
-    isValid: boolean;
-    email?: InputFieldValidation;
-    password?: InputFieldValidation;
-};
-type LoginFormResponse = { status: string; message: string };
-type LoginFormState = {
-    formData: { email: string; password: string };
-    validation: LoginFormValidation;
-    formResponse: LoginFormResponse;
-};
-type LoginFormProps = WithStyles<typeof styles> & {};
-
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
     createStyles({
         form: {
             width: '100%' // Fix IE 11 issue.
