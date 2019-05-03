@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { WithStyles, createStyles, Theme } from '@material-ui/core';
+import {
+    WithStyles,
+    createStyles,
+    Theme,
+    FormHelperText
+} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -11,8 +16,13 @@ import env from '../env';
 import withStyles from '@material-ui/core/styles/withStyles';
 import FormValidator from '../forms/validator';
 
-type FormDataState = { email: string, password: string };
-type State = { formData: FormDataState, validation: LoginFormValidation };
+type FormDataState = { email: string; password: string };
+type LoginFormResponse = { status: string; message: string };
+type State = {
+    formData: FormDataState;
+    validation: LoginFormValidation;
+    formResponse: LoginFormResponse;
+};
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -56,7 +66,11 @@ class LoginForm extends React.Component<LoginFormProps, any> {
             email: '',
             password: ''
         },
-        validation: this.validator.valid()
+        validation: this.validator.valid(),
+        formResponse: {
+            status: '',
+            message: ''
+        }
     };
     private loginUrl = env.baseApi + '/login';
 
@@ -80,15 +94,17 @@ class LoginForm extends React.Component<LoginFormProps, any> {
             axios
                 .post(this.loginUrl, formData)
                 .then(response => {
-                    console.log(response);
+                    const { data: formResponse } = response;
+                    this.setState({ formResponse });
+                    console.log(formResponse);
                 })
                 .catch(error => {
                     const {
                         response: { status },
                         response
                     } = error;
-                    console.log(status, response);
                     if (status === 422) {
+                        console.log(status, response);
                     }
                 });
         }
@@ -99,6 +115,7 @@ class LoginForm extends React.Component<LoginFormProps, any> {
 
         return (
             <form className={classes.form}>
+                <FormHelperText>{this.state.formResponse.message}</FormHelperText>
                 <FormControl
                     margin='normal'
                     required
@@ -113,8 +130,16 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                         autoComplete='email'
                         autoFocus
                     />
+                    <FormHelperText>
+                        {this.state.validation.email.message}
+                    </FormHelperText>
                 </FormControl>
-                <FormControl margin='normal' required fullWidth>
+                <FormControl
+                    margin='normal'
+                    required
+                    fullWidth
+                    error={this.state.validation.password.isInvalid}
+                >
                     <InputLabel htmlFor='password'>Password</InputLabel>
                     <Input
                         onChange={this.handleChange}
@@ -123,6 +148,9 @@ class LoginForm extends React.Component<LoginFormProps, any> {
                         id='password'
                         autoComplete='current-password'
                     />
+                    <FormHelperText>
+                        {this.state.validation.password.message}
+                    </FormHelperText>
                 </FormControl>
                 <FormControlLabel
                     control={<Checkbox value='remember' color='primary' />}
