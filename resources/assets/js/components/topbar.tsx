@@ -23,7 +23,7 @@ const styles = (theme: Theme) =>
 
 export interface Props extends WithStyles<typeof styles> {}
 
-const HomeComponent = (props: Props) => {
+const TopbarComponent = (props: Props) => {
     const { classes } = props;
     return (
         <React.Fragment>
@@ -49,8 +49,8 @@ const HomeComponent = (props: Props) => {
     );
 };
 
-HomeComponent.prototype = {
+TopbarComponent.prototype = {
     classes: PropTypes.object.isRequired
 } as any;
 
-export default withStyles(styles)(HomeComponent);
+export default withStyles(styles)(TopbarComponent);

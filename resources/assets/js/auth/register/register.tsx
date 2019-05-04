@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Theme, createStyles } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core';
+import Topbar from '../../components/topbar';
 
 import RegisterForm from './register-form';
 
@@ -47,18 +48,25 @@ class Register extends React.Component<RegisterProps> {
         const classes = this.props.classes;
 
         return (
-            <main className={classes.main}>
-                <Paper className={classes.paper}>
-                    <div className={classes.formHeader}>
-                        <Typography component='h1' variant='h5' align='center'>
-                            Register
-                        </Typography>
-                    </div>
-                    <div className={classes.formBody}>
-                        <RegisterForm />
-                    </div>
-                </Paper>
-            </main>
+            <React.Fragment>
+                <Topbar />
+                <main className={classes.main}>
+                    <Paper className={classes.paper}>
+                        <div className={classes.formHeader}>
+                            <Typography
+                                component='h1'
+                                variant='h5'
+                                align='center'
+                            >
+                                Register
+                            </Typography>
+                        </div>
+                        <div className={classes.formBody}>
+                            <RegisterForm />
+                        </div>
+                    </Paper>
+                </main>
+            </React.Fragment>
         );
     }
 }
