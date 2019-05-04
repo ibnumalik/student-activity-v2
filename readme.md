@@ -95,6 +95,9 @@ The server will run on port `8008`. Open `http://localhost:8008` on your browser
 chmod 777 database/portal.db
 ```
 
+## Guide
+1. Try to follow code style pattern presented by Martin Hochel here. [Medium](https://medium.com/@martin_hotell/10-typescript-pro-tips-patterns-with-or-without-react-5799488d6680)
+
 ## Todo
 
 - [x] Separate HTTP call in component to service
