@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
 
 module.exports = (env, argv) => {
 
@@ -31,7 +32,8 @@ module.exports = (env, argv) => {
             }),
             new ForkTsCheckerWebpackPlugin({
                 tsconfig: path.join(__dirname)
-            })
+            }),
+            new HotModuleReplacementPlugin()
         ],
 
         module: {
@@ -72,6 +74,15 @@ module.exports = (env, argv) => {
                     ]
                 },
             ]
+        },
+
+        devServer: {
+            hot: true,
+            contentBase: path.join(__dirname, 'public'),
+            host: 'schoolcms.local',
+            proxy: {
+                '/': 'http://schoolcms.local'
+            }
         }
     }
 }
