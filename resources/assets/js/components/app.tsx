@@ -1,9 +1,9 @@
 import * as React from 'react';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Route, HashRouter } from 'react-router-dom';
-import Home from "./components/home";
-import Login from "./auth/login/login";
-import Register from "./auth/register/register";
+import Home from "./home";
+import Login from "../auth/login/login";
+import Register from "../auth/register/register";
 
 const App = () => {
   return (
