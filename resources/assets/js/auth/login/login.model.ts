@@ -21,4 +21,4 @@ export type LoginFormState = {
 
 export type LoginFormProps = WithStyles<typeof loginFormStyle> & {};
 
-export interface LoginProps extends WithStyles<typeof loginStyle> {}
+export type LoginProps = WithStyles<typeof loginStyle> & {};
