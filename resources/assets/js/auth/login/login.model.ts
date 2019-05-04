@@ -1,5 +1,5 @@
-import { WithStyles } from "@material-ui/core";
-import { styles } from "./login-form";
+import { styles } from './login-form';
+import { WithStyles } from '@material-ui/core';
 
 type InputFieldValidation = {
     isInvalid: boolean;

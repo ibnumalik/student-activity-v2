@@ -1,4 +1,3 @@
-import * as React from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,11 +7,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { createStyles, Theme } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
+import {
+    LoginFormProps,
+    LoginFormState,
+    LoginFormValidation
+} from './login.model';
 import { loginFormValidator, validateLoginForm } from './login-validation';
-import { LoginFormProps, LoginFormState, LoginFormValidation } from "./login.model";
+import { Redirect } from 'react-router-dom';
 
 export const styles = (theme: Theme) =>
     createStyles({

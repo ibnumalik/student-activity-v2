@@ -1,5 +1,3 @@
-const env =  {
+export default {
     baseApi: '',
 }
-
-export default env;

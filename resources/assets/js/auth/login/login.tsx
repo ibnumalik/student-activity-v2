@@ -1,17 +1,17 @@
-import * as React from 'react';
+import LoginForm from './login-form';
 import Paper from '@material-ui/core/Paper';
+import React from 'react';
+import Topbar from '../../components/topbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { WithStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import LoginForm from './login-form';
 import { loginStyles } from './login-style';
-import Topbar from '../../components/topbar';
+import { WithStyles } from '@material-ui/core';
 
 interface LoginProps extends WithStyles<typeof loginStyles> {}
 
 class Login extends React.Component<LoginProps> {
-    public render(): JSX.Element {
+    public render() {
         const classes = this.props.classes;
 
         return (

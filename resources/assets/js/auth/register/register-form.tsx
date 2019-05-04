@@ -1,4 +1,3 @@
-import * as React from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import env from '../../env';
@@ -6,11 +5,19 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { createStyles, Theme } from '@material-ui/core';
-import { RegisterFormProps, RegisterFormState, RegisterFormValidation } from './register.model';
-import { registerFormValidator, validateRegisterForm } from './register-validation';
 import { Redirect } from 'react-router-dom';
+import {
+    RegisterFormProps,
+    RegisterFormState,
+    RegisterFormValidation
+} from './register.model';
+import {
+    registerFormValidator,
+    validateRegisterForm
+} from './register-validation';
 
 export const styles = (theme: Theme) =>
     createStyles({
@@ -22,7 +29,10 @@ export const styles = (theme: Theme) =>
         }
     });
 
-class RegisterForm extends React.Component<RegisterFormProps, RegisterFormState> {
+class RegisterForm extends React.Component<
+    RegisterFormProps,
+    RegisterFormState
+> {
     state: RegisterFormState = {
         formData: {
             name: '',
@@ -47,7 +57,9 @@ class RegisterForm extends React.Component<RegisterFormProps, RegisterFormState>
         event.preventDefault();
 
         const { formData } = this.state;
-        const validation: RegisterFormValidation = validateRegisterForm(formData);
+        const validation: RegisterFormValidation = validateRegisterForm(
+            formData
+        );
 
         this.setState({ validation });
 

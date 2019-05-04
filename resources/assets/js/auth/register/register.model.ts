@@ -1,5 +1,5 @@
-import { WithStyles } from "@material-ui/core";
-import { styles } from "./register-form";
+import { styles } from './register-form';
+import { WithStyles } from '@material-ui/core';
 
 type InputFieldValidation = {
     isInvalid: boolean;
@@ -14,7 +14,7 @@ export type RegisterFormValidation = {
 type RegisterFormResponse = { status: string; message: string };
 
 export type RegisterFormState = {
-    formData: { name: string, email: string; password: string };
+    formData: { name: string; email: string; password: string };
     validation: RegisterFormValidation;
     formResponse: RegisterFormResponse;
 };

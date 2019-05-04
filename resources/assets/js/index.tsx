@@ -1,10 +1,7 @@
-// import "@babel/polyfill"
-
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-
 import App from './components/app';
-
-import "../sass/app.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import '../sass/app.scss';
+// import "@babel/polyfill"
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Topbar from '../components/topbar';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) => createStyles({});
 

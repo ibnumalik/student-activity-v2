@@ -1,12 +1,11 @@
-import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
+import React from 'react';
+import RegisterForm from './register-form';
+import Topbar from '../../components/topbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Theme, createStyles } from '@material-ui/core';
+import { createStyles, Theme } from '@material-ui/core';
 import { WithStyles } from '@material-ui/core';
-import Topbar from '../../components/topbar';
-
-import RegisterForm from './register-form';
 
 const styles = (theme: Theme) =>
     createStyles({
