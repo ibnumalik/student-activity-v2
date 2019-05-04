@@ -1,16 +1,19 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "declaration": false,
-      "noImplicitAny": true,
-      "jsx": "react",
-      "sourceMap": true,
-      "noLib": false,
-      "suppressImplicitAnyIndexErrors": true,
-      "esModuleInterop": true
-    },
-    "compileOnSave": false,
-    "exclude": ["node_modules", "vendor"]
-  }
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "noLib": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": true
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules",
+    "vendor"
+  ]
+}
