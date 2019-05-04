@@ -7,7 +7,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { createStyles, Theme } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import {
     RegisterFormProps,
@@ -18,16 +17,7 @@ import {
     registerFormValidator,
     validateRegisterForm
 } from './register-validation';
-
-export const styles = (theme: Theme) =>
-    createStyles({
-        form: {
-            width: '100%' // Fix IE 11 issue.
-        },
-        submit: {
-            marginTop: theme.spacing.unit * 3
-        }
-    });
+import styles from './register-form-style';
 
 class RegisterForm extends React.Component<
     RegisterFormProps,
