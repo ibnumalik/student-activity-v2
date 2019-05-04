@@ -5,10 +5,8 @@ import Topbar from '../../components/topbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
-import { loginStyles } from './login-style';
-import { WithStyles } from '@material-ui/core';
-
-interface LoginProps extends WithStyles<typeof loginStyles> {}
+import styles from './login-style';
+import { LoginProps } from './login.model';
 
 class Login extends React.Component<LoginProps> {
     public render() {
@@ -42,4 +40,4 @@ class Login extends React.Component<LoginProps> {
     }
 }
 
-export default withStyles(loginStyles)(Login);
+export default withStyles(styles)(Login);

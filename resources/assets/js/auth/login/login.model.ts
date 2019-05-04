@@ -1,5 +1,6 @@
-import { styles } from './login-form';
 import { WithStyles } from '@material-ui/core';
+import loginStyle from './login-style';
+import loginFormStyle from './login-form-style';
 
 type InputFieldValidation = {
     isInvalid: boolean;
@@ -18,4 +19,6 @@ export type LoginFormState = {
     formResponse: LoginFormResponse;
 };
 
-export type LoginFormProps = WithStyles<typeof styles> & {};
+export type LoginFormProps = WithStyles<typeof loginFormStyle> & {};
+
+export interface LoginProps extends WithStyles<typeof loginStyle> {}

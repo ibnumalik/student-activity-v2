@@ -9,24 +9,14 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { createStyles, Theme } from '@material-ui/core';
 import {
     LoginFormProps,
     LoginFormState,
     LoginFormValidation
 } from './login.model';
-import { loginFormValidator, validateLoginForm } from './login-validation';
+import { loginFormValidator, validateLoginForm } from './login-form-validation';
 import { Redirect } from 'react-router-dom';
-
-export const styles = (theme: Theme) =>
-    createStyles({
-        form: {
-            width: '100%' // Fix IE 11 issue.
-        },
-        submit: {
-            marginTop: theme.spacing.unit * 3
-        }
-    });
+import styles from './login-form-style';
 
 class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
     state: LoginFormState = {

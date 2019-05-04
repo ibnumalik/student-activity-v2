@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core';
 
-export const loginStyles = (theme: Theme) =>
+export default (theme: Theme) =>
     createStyles({
         main: {
             width: 'auto',
@@ -26,10 +26,6 @@ export const loginStyles = (theme: Theme) =>
         },
         loginBody: {
             padding: `0 ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`
-        },
-        avatar: {
-            margin: theme.spacing.unit,
-            backgroundColor: theme.palette.secondary.main
         },
         register: {
             marginTop: '24px'
