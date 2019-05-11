@@ -114,7 +114,6 @@ class RegisterForm extends React.Component<
                         id='email'
                         name='email'
                         autoComplete='email'
-                        autoFocus
                     />
                     <FormHelperText>
                         {this.state.validation.email.message}
