@@ -7,5 +7,8 @@ export default (theme: Theme) =>
         },
         submit: {
             marginTop: theme.spacing.unit * 3
+        },
+        textCenter: {
+            textAlign: 'center'
         }
     });

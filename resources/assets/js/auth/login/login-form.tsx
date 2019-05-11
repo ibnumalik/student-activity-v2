@@ -74,7 +74,10 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
 
         return (
             <form className={classes.form}>
-                <FormHelperText>
+                <FormHelperText
+                    error={!!this.state.formResponse.message}
+                    className={classes.textCenter}
+                >
                     {this.state.formResponse.message}
                 </FormHelperText>
                 <FormControl
