@@ -80,9 +80,25 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+
+/*
+|--------------------------------------------------------------------------
+| Dingo Routes
+|--------------------------------------------------------------------------
+|
+*/
+$api = $app[Dingo\Api\Routing\Router::class];
+
+// Version 1
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\V1',
+], function ($api) {
+    require __DIR__ . '/../routes/v1/api.php';
+});
 
 /*
 |--------------------------------------------------------------------------

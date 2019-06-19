@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -31,7 +32,7 @@ class AuthController extends Controller
             return $this->authenticationMismatch();
         }
 
-        $apiKey = encrypt($user->email.'|'.str_random(40));
+        $apiKey = encrypt($user->email . '|' . str_random(40));
         $user->update(['token' => $apiKey]);
 
         return response()->json([
@@ -112,11 +113,11 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'token' => 'required'
-        ], [ 'token.required' => 'Missing token' ]);
+        ], ['token.required' => 'Missing token']);
 
         $userToken = User::where('token', $request->input('token'))->first();
 
-        if ( !$userToken ) {
+        if (!$userToken) {
             return response()->json([
                 'status' => 'fail',
                 'message' => 'Token does not exist',

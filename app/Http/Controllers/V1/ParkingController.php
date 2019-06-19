@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Parking;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use App\User;
+use App\Parking;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ParkingController extends Controller
 {
@@ -61,7 +62,7 @@ class ParkingController extends Controller
             ]);
         }
 
-        if( $parking->user_id ) {
+        if ($parking->user_id) {
             return response()->json([
                 'status' => 'fail',
                 'message' => 'The parking space has been rented'
