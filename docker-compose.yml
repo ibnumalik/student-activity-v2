@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   web:
@@ -11,14 +11,18 @@ services:
       - "traefik.port=${NGINX_PORT}"
     volumes:
       - .:/var/www/school:ro
-      - ./server/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     networks:
       - web
       - internal
     restart: always
 
   php:
-    image: php:7-fpm-alpine
+    image: ibnumalik/php-7
+    build:
+      context: ./docker/php
+      args:
+        - USER_ID
     labels:
       - "traefik.enable=false"
     volumes:
