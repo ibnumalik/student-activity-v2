@@ -10,8 +10,10 @@
     "type": "project",
     "require": {
         "php": "^7.2.5",
+        "dingo/api": "^3.0.0",
+        "laravel/helpers": "^1.2",
         "laravel/lumen-framework": "^7.0",
-        "dingo/api": "^3"
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
