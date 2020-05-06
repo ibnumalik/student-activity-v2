@@ -60,8 +60,9 @@ $app->singleton(
 |
 */
 
-$app->configure('app');
-
+collect(scandir(__DIR__ . '/../config'))->each(function ($item) use ($app) {
+    $app->configure(basename($item, '.php'));
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -74,17 +75,26 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
 ]);
 
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
+    'auth'       => App\Http\Middleware\Authenticate::class,
+    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
 ]);
+
+/*
+|--------------------------------------------------------------------------
+| Register Alias
+|--------------------------------------------------------------------------
+|
+| Here we will register alias for service provider.
+|
+*/
+
+$app->alias('cache', \Illuminate\Cache\CacheManager::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +112,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 $app->register(\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -133,18 +144,6 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__ . '/../routes/web.php';
-});
-
-/*
-|--------------------------------------------------------------------------
-| Load The Application Config
-|--------------------------------------------------------------------------
-|
-| Lastly we will read all files insisde config folders for user config.
-|
-*/
-collect(scandir(__DIR__ . '/../config'))->each(function ($item) use ($app) {
-    $app->configure(basename($item, '.php'));
 });
 
 return $app;
